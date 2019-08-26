@@ -31,7 +31,7 @@
   <node name="cartographer_offline_node" pkg="cartographer_ros"
       type="cartographer_offline_node" args="
           -configuration_directory $(find cartographer_ros)/configuration_files
-          -configuration_basenames my_robot.lua
+          -configuration_basenames prueba_lidar.lua
           -urdf_filenames $(find cartographer_ros)/urdf/robot.urdf
           -bag_filenames $(arg bag_filenames)"
       output="screen">
