@@ -17,17 +17,17 @@
 -- cartographer_paper_deutsches_museum.bag requires ~25GiB of memory. You can
 -- reduce this by writing fewer X-Rays or upping VOXEL_SIZE - which is the size
 -- of a pixel in a X-Ray.
-VOXEL_SIZE = 5e-2
+VOXEL_SIZE = 5e-3
 
 include "transform.lua"
 
 options = {
-  tracking_frame = "base_link",
+  tracking_frame = "imu",
   pipeline = {
     {
       action = "min_max_range_filter",
-      min_range = 1.,
-      max_range = 60.,
+      min_range = 0.2,
+      max_range = 15.,
     },
     {
       action = "dump_num_points",
@@ -63,7 +63,7 @@ options = {
     {
       action = "intensity_to_color",
       min_intensity = 0.,
-      max_intensity = 4095.,
+      max_intensity = 4096.,
     },
 
     {
@@ -92,39 +92,43 @@ options = {
       action = "write_ply",
       filename = "points.ply",
     },
+    {
+      action = "write_pcd",
+      filename = "points.pcd",
+    },
 
     -- Now we recolor our points by frame and write another batch of X-Rays. It
     -- is visible in them what was seen by the horizontal and the vertical
     -- laser.
-    {
-      action = "color_points",
-      frame_id = "horizontal_laser_link",
-      color = { 255., 0., 0. },
-    },
-    {
-      action = "color_points",
-      frame_id = "vertical_laser_link",
-      color = { 0., 255., 0. },
-    },
+    -- {
+    --   action = "color_points",
+    --   frame_id = "horizontal_laser_link",
+    --   color = { 255., 0., 0. },
+    -- },
+    -- {
+    --   action = "color_points",
+    --   frame_id = "vertical_laser_link",
+    --   color = { 0., 255., 0. },
+    -- },
 
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_yz_all_color",
-      transform = YZ_TRANSFORM,
-    },
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_xy_all_color",
-      transform = XY_TRANSFORM,
-    },
-    {
-      action = "write_xray_image",
-      voxel_size = VOXEL_SIZE,
-      filename = "xray_xz_all_color",
-      transform = XZ_TRANSFORM,
-    },
+    -- {
+    --   action = "write_xray_image",
+    --   voxel_size = VOXEL_SIZE,
+    --   filename = "xray_yz_all_color",
+    --   transform = YZ_TRANSFORM,
+    -- },
+    -- {
+    --   action = "write_xray_image",
+    --   voxel_size = VOXEL_SIZE,
+    --   filename = "xray_xy_all_color",
+    --   transform = XY_TRANSFORM,
+    -- },
+    -- {
+    --   action = "write_xray_image",
+    --   voxel_size = VOXEL_SIZE,
+    --   filename = "xray_xz_all_color",
+    --   transform = XZ_TRANSFORM,
+    -- },
   }
 }
 
