@@ -22,7 +22,7 @@ options = {
   tracking_frame = "imu",
   published_frame = "base_link",
   odom_frame = "odom",
-  provide_odom_frame = false,
+  provide_odom_frame = true,
   publish_frame_projected_to_2d = false,
   use_odometry = false,
   use_nav_sat = false,
@@ -42,11 +42,7 @@ options = {
   landmarks_sampling_ratio = 1.,
 }
 
-TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 115
--- TRAJECTORY_BUILDER_3D.motion_filter.max_time_seconds=0.1
--- TRAJECTORY_BUILDER_3D.motion_filter.max_distance_meters=0.01
---TRAJECTORY_BUILDER_3D.motion_filter.max_angle_radians=0.1
---TRAJECTORY_BUILDER_3D.voxel_filter_size = 0.0015
+TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 1
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 7
@@ -56,7 +52,7 @@ POSE_GRAPH.constraint_builder.sampling_ratio = 0.03
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 10
 POSE_GRAPH.constraint_builder.min_score = 0.62
 POSE_GRAPH.constraint_builder.global_localization_min_score = 0.66
-POSE_GRAPH.optimization_problem.log_solver_summary = true
+
 
 
 
